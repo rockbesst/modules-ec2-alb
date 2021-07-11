@@ -1,0 +1,5 @@
+This is a module for AWS Security Group with rules:
+    inbound - 22 and 80 ports for all
+    outbound - all ports and all traffic
+
+Need VPC.id specified in variables
