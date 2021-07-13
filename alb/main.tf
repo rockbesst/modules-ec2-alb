@@ -2,7 +2,7 @@ resource "aws_lb" "alb" {
  	name = "MainLoadBalancer"
  	load_balancer_type = "application"
  	security_groups = [var.asg_id]
- 	subnets = [var.subnet_id]
+ 	subnets = [var.subnets]
 }
 
  resource "aws_lb_listener" "listener_http" {

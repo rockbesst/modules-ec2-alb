@@ -18,6 +18,6 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
-variable "avail_zone" {}
+variable "avail_zones" {}
 
 variable "sec_group_id"{}

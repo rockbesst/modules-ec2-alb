@@ -14,7 +14,7 @@ data "aws_subnet" "sub2"{
 module "ec2" {
     source = "./ec2"
     count = 2
-    avail_zone = ""
+    avail_zones = ["eu-central-1a", "eu-central-1b"]
     sec_group_id = module.sec_group.asg_id
 }
 
@@ -26,7 +26,7 @@ module "sec_group" {
 module "alb" {
     source = "./alb"
     asg_id = module.sec_group.asg_id
-    subnet_id = ""
+    subnets = [data.aws_subnet.sub1.id, data.aws_subnet.sub2.id]
     vpc_id = data.aws_vpc.mainVPC.id
     ec2_id = module.ec2.ec2_id
 }
