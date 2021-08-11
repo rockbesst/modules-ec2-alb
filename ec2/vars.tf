@@ -25,7 +25,3 @@ variable "sec_group_id"{}
 variable "i" {
   default = 1
 }
-
-variable "index"{
-  type = map(object({index = number}))
-}
