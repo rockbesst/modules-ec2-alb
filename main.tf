@@ -13,7 +13,7 @@ data "aws_subnet" "sub2"{
 
 module "ec2" {
     source = "./ec2"
-    count = 2
+    i = 2
     avail_zones = ["eu-central-1a", "eu-central-1b"]
     sec_group_id = module.sec_group.asg_id
 }
