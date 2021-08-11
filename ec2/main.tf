@@ -7,7 +7,7 @@ resource "aws_instance" "ec2" {
 	user_data = file("ready_webserver.sh")
 	key_name = var.ssh_key
 	associate_public_ip_address = var.allow_public_ip
-	tags = merge(var.tags, {Name = "WebServer"}, {Number = str(count.index)})
+	tags = merge(var.tags, {Name = "WebServer"})
 }
 
 data "aws_ami" "amazon_linux" {
