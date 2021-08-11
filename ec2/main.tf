@@ -1,7 +1,8 @@
 resource "aws_instance" "ec2" {
 	ami = data.aws_ami.amazon_linux.id
 	instance_type = var.instance_type
-	availability_zone = var.avail_zones[count]
+	for_each = var.avail_zones
+		availability_zone = each.var.avail_zones
 	vpc_security_group_ids = var.sec_group_id
 	user_data = file("ready_webserver.sh")
 	key_name = var.ssh_key

@@ -21,3 +21,7 @@ variable "instance_type" {
 variable "avail_zones" {}
 
 variable "sec_group_id"{}
+
+variable "count" {
+  default = 1
+}
