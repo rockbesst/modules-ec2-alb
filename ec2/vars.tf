@@ -22,6 +22,6 @@ variable "avail_zones" {}
 
 variable "sec_group_id"{}
 
-variable "count" {
+variable "i" {
   default = 1
 }

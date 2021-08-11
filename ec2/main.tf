@@ -1,6 +1,7 @@
 resource "aws_instance" "ec2" {
 	ami = data.aws_ami.amazon_linux.id
 	instance_type = var.instance_type
+	count = var.i
 	for_each = var.avail_zones
 		availability_zone = each.var.avail_zones
 	vpc_security_group_ids = var.sec_group_id
