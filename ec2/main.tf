@@ -1,13 +1,12 @@
 resource "aws_instance" "ec2" {
 	ami = data.aws_ami.amazon_linux.id
 	instance_type = var.instance_type
-	count = length(var.avail_zones)
-	availability_zone = var.avail_zones[count.index]
+	availability_zone = var.avail_zones[each.key]
 	vpc_security_group_ids = var.sec_group_id
 	#user_data = file("ready_webserver.sh")
 	key_name = var.ssh_key
 	associate_public_ip_address = var.allow_public_ip
-	tags = merge(var.tags, {Name = "WebServer"})
+	tags = merge(var.tags, {Name = "WebServer ${each.key}"})
 }
 
 data "aws_ami" "amazon_linux" {

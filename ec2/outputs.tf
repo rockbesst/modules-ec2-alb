@@ -1,7 +1,4 @@
-output "ec2_id" {
-    value = aws_instance.ec2[count.index].id
-}
-
-output "ec2_index" {
-    value = count.index
+output "instance_ids" {
+  description = "IDs of EC2 instances"
+  value       = { for p in sort(keys(var.project)) : p => ec2[p].instance_ids }
 }
