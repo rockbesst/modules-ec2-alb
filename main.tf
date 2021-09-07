@@ -12,11 +12,12 @@ data "aws_subnet" "sub2"{
  }
 
 module "ec2" {
+    depends_on = [
+      module.sec_group
+    ]
     source = "./ec2"
     avail_zones = ["eu-central-1a", "eu-central-1b"]
     sec_group_id = module.sec_group.asg_id
-    for_each = var.project
-
 }
 
 module "sec_group" {
@@ -25,10 +26,12 @@ module "sec_group" {
 }
 
 module "alb" {
+    depends_on = [
+      module.ec2
+    ]
     source = "./alb"
     asg_id = module.sec_group.asg_id
     subnets = [data.aws_subnet.sub1.id, data.aws_subnet.sub2.id]
     vpc_id = data.aws_vpc.mainVPC.id
-    for_each = var.project
-    ec2_id = module.ec2.instance_ids[each.key]
+    ec2_id = module.ec2.instance_ids
 }

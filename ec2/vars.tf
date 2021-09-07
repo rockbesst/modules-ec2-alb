@@ -6,7 +6,7 @@ variable "tags" {
 }
 
 variable "ssh_key" {
-  default = "AWS-Frankfurt-test1"
+  default = "/home/hunko/.ssh/AWS-Ireland.pem"
 }
 
 variable "allow_public_ip" {

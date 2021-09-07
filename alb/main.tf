@@ -2,7 +2,7 @@ resource "aws_lb" "alb" {
  	name = "MainLoadBalancer"
  	load_balancer_type = "application"
  	security_groups = [var.asg_id]
- 	subnets = [var.subnets]
+ 	subnets = var.subnets
 }
 
  resource "aws_lb_listener" "listener_http" {
@@ -22,7 +22,12 @@ resource "aws_lb" "alb" {
  }
  resource "aws_lb_target_group_attachment" "attach1_to_tg_main" {
  	target_group_arn = aws_lb_target_group.tg_main.arn
-  	target_id        = var.ec2_id
+  	target_id        = var.ec2_id[0]
    	port             = 80
-  
+ }
+
+  resource "aws_lb_target_group_attachment" "attach2_to_tg_main" {
+ 	target_group_arn = aws_lb_target_group.tg_main.arn
+  	target_id        = var.ec2_id[1]
+   	port             = 80
  }
